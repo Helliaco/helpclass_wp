@@ -1,0 +1,876 @@
+// Variables
+//
+// Table of Contents
+//
+// Colors
+// Options
+// Spacing
+// Body
+// Links
+// Fonts
+// Colors
+//
+// Start with assigning color names to specific hex values.
+$white: #fff !default;
+$black: #000 !default;
+$red: #d9534f !default;
+$orange: #f0ad4e !default;
+$yellow: #ffd500 !default;
+$green: #5cb85c !default;
+$blue: #0275d8 !default;
+$teal: #00B0EF !default;
+$pink: #ff5b77 !default;
+$purple: #613d7c !default;
+// Grayscale and brand colors for use across Bootstrap.
+// Create grayscale
+$gray-dark: #393939 !default;
+$gray: #09B2EF !default;
+$gray-light: #636c72 !default;
+$gray-lighter: #eceeef !default;
+$gray-lightest: #f7f7f9 !default;
+// Reassign color vars to semantic color scheme
+$brand-primary: #FF9900 !default;
+$brand-success: $gray-dark !default;
+$brand-info: $teal !default;
+$brand-warning: $orange !default;
+$brand-danger: $red !default;
+$brand-inverse: $gray-dark !default;
+// Options
+//
+// Quickly modify global styling by enabling or disabling optional features.
+$enable-rounded: true !default;
+$enable-shadows: false !default;
+$enable-gradients: false !default;
+$enable-transitions: true !default;
+$enable-hover-media-query: false !default;
+$enable-grid-classes: true !default;
+$enable-print-styles: true !default;
+// Spacing
+//
+// Control the default styling of most Bootstrap elements by modifying these
+// variables. Mostly focused on spacing.
+// You can add more entries to the $spacers map, should you need more variation.
+$spacer: 1rem !default;
+//$spacers:( 0: 0, 1: ($spacer * .25), 2: ($spacer * .5), 3: $spacer, 4: ($spacer * 1.5), 5: ($spacer * 3)) !default;
+// This variable affects the `.h-*` and `.w-*` classes.
+$sizes: ( 25: 25%, 50: 50%, 75: 75%, 100: 100%) !default;
+// Body
+//
+// Settings for the `<body>` element.
+$body-bg: $white !default;
+$body-color: $gray-dark !default;
+// Links
+//
+// Style anchor elements.
+$link-color: $brand-primary !default;
+$link-decoration: none !default;
+$link-hover-color: darken($link-color, 15%) !default;
+$link-hover-decoration: underline !default;
+// Fonts
+//
+// Font, line-height, and color for body text, headings, and more.
+$font-family-sans-serif: -apple-system,
+system-ui,
+BlinkMacSystemFont,
+"Segoe UI",
+Roboto,
+"Helvetica Neue",
+Arial,
+sans-serif !default;
+$font-family-monospace: Menlo,
+Monaco,
+Consolas,
+"Liberation Mono",
+"Courier New",
+monospace !default;
+$font-family-base: $font-family-sans-serif !default;
+$font-size-base: 1rem !default; // Assumes the browser default, typically `16px`
+$font-size-lg: 1.25rem !default;
+$font-size-sm: .875rem !default;
+$font-size-xs: .75rem !default;
+$font-weight-normal: normal !default;
+$font-weight-bold: bold !default;
+$font-weight-base: $font-weight-normal !default;
+$line-height-base: 1.5 !default;
+$font-size-h1: 2.5rem !default;
+$font-size-h2: 2rem !default;
+$font-size-h3: 1.75rem !default;
+$font-size-h4: 1.5rem !default;
+$font-size-h5: 1.25rem !default;
+$font-size-h6: 1rem !default;
+$headings-margin-bottom: ($spacer / 2) !default;
+$headings-font-family: inherit !default;
+$headings-font-weight: 500 !default;
+$headings-line-height: 1.1 !default;
+$headings-color: inherit !default;
+$display1-size: 6rem !default;
+$display2-size: 5.5rem !default;
+$display3-size: 4.5rem !default;
+$display4-size: 3.5rem !default;
+$display1-weight: 300 !default;
+$display2-weight: 300 !default;
+$display3-weight: 300 !default;
+$display4-weight: 300 !default;
+$display-line-height: $headings-line-height !default;
+$lead-font-size: 1.25rem !default;
+$lead-font-weight: 300 !default;
+$small-font-size: 80% !default;
+$blockquote-font-size: ($font-size-base * 1.25) !default;
+@import 'b/bootstrap';
+$gray-hover: #0472B1;
+$color-input: #b7b7b7;
+html {
+    background: $gray-dark;
+}
+
+body {
+    overflow-x: hidden;
+    position:relative;
+    max-width: 1920px;
+    margin: 0 auto;
+    &>* {
+        background-size: cover;
+        background-repeat: none;
+        background-position: center;
+    }
+}
+
+a, button{
+ &:focus{
+     box-shadow:initial;
+     outline:0px;
+ }   
+}
+
+.border-radius {
+    border-radius: 5px;
+}
+
+.center-m-w {
+    margin: 0 auto;
+}
+
+.font-raleway {
+    font-family: 'Raleway', sans-serif;
+}
+
+.text-shadow {
+    text-shadow: 0px 5px 6px rgba(0, 0, 0, 0.3);
+}
+
+.mx-box-shadow {
+    box-shadow: 0px 5px 6px rgba(0, 0, 0, 0.2);
+}
+
+.m-w-800 {
+    max-width: 800px;
+    @extend .center-m-w;
+}
+
+.m-w-600 {
+    max-width: 600px;
+    @extend .center-m-w;
+}
+
+.m-w-730 {
+    max-width: 730px;
+    @extend .center-m-w;
+}
+
+.m-w-300 {
+    max-width: 300px;
+    @extend .center-m-w;
+}
+
+.m-w-100 {
+    max-width: 120px;
+}
+
+.m-w-200 {
+    max-width: 200px;
+    @extend .center-m-w;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.no-bold {
+    font-weight: normal!important;
+}
+
+.bg-more-black {
+    background: #303030;
+}
+
+.py-6 {
+    padding: 80px 0px;
+}
+
+.bg-gray {
+    background: $gray;
+    border-color: $gray;
+    &:hover {
+        background: $gray-hover;
+        border-color: $gray-hover;
+    }
+}
+
+
+
+#header-menu {
+    position: absolute;
+    z-index: 9;
+    width: 100%;
+    font-weight: bold;
+    color: #fff;
+    .navbar-nav a {
+        color: $white;
+        border:3px solid transparent;
+        &:hover {
+        text-decoration: none;
+        border-bottom: 3px solid #f90;
+      }
+    }
+    .navbar-brand {
+        font-size: 0px;
+    }
+
+    .navbar-toggler{
+        i {
+        color: #fff;
+        font-size: 40px;
+        padding: 25px 0px;
+        cursor: pointer;
+        }
+    }
+}
+
+#mx-sub-header {
+    padding: 250px 0px 100px;
+}
+
+h1.t-style2 {
+    font-size: 4rem;
+    @extend .font-raleway;
+    @extend .text-shadow;
+}
+
+h1.style1 {
+    @extend .font-raleway;
+    font-weight: bold;
+    position: relative;
+    margin: 30px 0px 25px;
+    &:before {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        border-bottom: 2px solid #FF9700;
+        width: 150px;
+        right: calc( 50% - 75px);
+    }
+}
+
+.t-style3 {
+    @extend h1.style1;
+    font-weight: initial!important;
+    &:before {
+        border-color: #fff;
+    }
+}
+
+.mx-w-80 {
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+.footer-menu {
+    a {
+        color: white;
+        &:hover {
+            color: $brand-primary;
+            text-decoration: none;
+        }
+    }
+}
+
+.header-sub-titulo {
+    max-width: 750px;
+    margin: 0 auto 70px;
+    font-weight: bold;
+    font-size: 1.5rem;
+    @extend .text-shadow;
+}
+
+.btn {
+    cursor:pointer;
+    &-destaque {
+        border: 6px solid #fff;
+        border-radius: 50px;
+        text-transform: uppercase;
+        font-weight: bold;
+        width: 100%;
+        max-width: 350px;
+        font-size: 1.3rem;
+        padding: 15px 5px 16px;
+        @extend .mx-box-shadow;
+         &:focus{
+            color:#fff;
+         }
+         &:hover{
+             border-color:#fff;
+         }
+    }
+    &-padrao {
+        width: 100%;
+        max-width: 320px;
+        border-radius: 50px;
+        font-weight: bold;
+        padding: 12px 10px;
+         &:focus{
+            color:#fff;
+         }
+    }
+    &-clean {
+        @extend .btn-padrao;
+        background: transparent;
+        border: 1px solid #fff;
+        &:hover {
+            background: #fff;
+            color: $gray;
+            border-color: #fff;
+        }
+    }
+    &-azul {
+        font-size: 22px;
+        background: #0495E8;
+        border-radius: 50px;
+        border: 0px;
+        padding: 15px 35px 16px;
+        @extend .mx-box-shadow;
+        position:relative;
+        z-index:8;
+
+        &:hover {
+            background: #0871AC;
+        }
+        
+        &:focus{
+            color:#fff;
+         }
+    }
+    &:focus{
+        outline:0px;
+        box-shadow:initial;
+    }
+}
+
+.before_arrow {
+    content: ' ';
+    position: absolute;
+    right: 0;
+    bottom: calc(50% - 10px);
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-right: 20px solid #fff;
+}
+
+.before_content {
+    content: '';
+    position: absolute;
+}
+
+#alunos-professores {
+    overflow:hidden;
+    .col-a-p {
+        padding: 0px;
+        .top,
+        .bot {
+            height: 312px;
+            position: relative;
+        }
+        img {
+            position: absolute;
+            bottom: 0px;
+        }
+        .box-content {
+            padding: 50px 30px;
+            position: relative;
+            z-index: 7;
+            p {
+                font-size: 38px;
+                line-height: 45px;
+            }
+        }
+    }
+    .col-a-p-a {
+        img {
+            right: 172px;
+        }
+        .top {
+            &:before {
+                @extend .before_arrow;
+            }
+        }
+    }
+    .col-a-p-p {
+        img {
+            left: 150px;
+        }
+        .bot {
+            &:before {
+                @extend .before_arrow;
+                border-right: 0px;
+                border-left: 20px solid #fff;
+                left: 0px;
+            }
+        }
+    }
+}
+
+#app-section {
+    &:before {
+        @extend .before_content;
+        background: {
+            image: url(../assets/images/app_helpclass.png);
+            size: 100% auto;
+        }
+        left:0px;
+        background-repeat: no-repeat;
+        width: 32%;
+        height: 587px;
+    }
+}
+
+
+#bg-icon-professor{
+    background: {
+        color:#F3F3F3;
+        image: url(../assets/images/professor-flat.png);
+        repeat: no-repeat;
+        position: 10% bottom;
+        size: initial;
+    }
+}
+
+
+
+.accordion{
+    border:1px solid rgba(0,0,0,0.125);
+    @extend .mx-box-shadow;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.card {
+    border-radius:0px!important;
+    border:0px;
+   &-block{
+       box-shadow:inset 0px -2px 5px rgba(0, 0, 0, 0.07);
+       padding: 20px 40px;
+    text-align: justify;
+   }
+    &-header{
+        background: #fff;
+    padding: 0px;
+        a {
+            display:block;
+             padding: 30px;
+            color: $gray-dark;
+            font-weight: normal;
+    font-size: 15px;
+            &:hover{
+                text-decoration: none;
+            }
+        }
+        i{
+            float: right;
+            color:$gray;
+        }
+
+         &:first-child{
+         border-radius:0px!important;
+    }
+
+        &:hover{
+            background:#f3f7fd;
+        }
+
+        &.actives{
+            background: $gray;
+            a{
+                color:#fff;
+            }
+            i:before {
+                content: "\f147";
+                color:#fff;
+            }
+        }
+    }
+    &:last-child{
+        .card-header{
+            border-bottom:0px;
+        }
+    }
+}
+
+
+
+.form-cadastro{
+    padding: 20px;
+    max-width: 650px;
+    margin: 0 auto;
+    .form-control{
+        margin-bottom: 20px;
+    border-radius: 5px;
+    padding: 20px 15px;
+    font-size: 14px;
+    border-color: #e6e6e6;
+    }
+
+    form.enviando .form-group {
+    height: 0px;
+    overflow: hidden;
+    }
+}
+
+.wpcf7{
+    input, textarea, select{
+    @extend .form-control;
+    padding: 15px!important;
+    margin: 0px 0px 20px;
+    border-radius: 8px!important;
+    font-size: 13px!important;
+    }
+    &-submit{
+        display:none!important;
+    }
+    p{
+        width:100%;
+    }
+    &-form-control-wrap{
+        span{
+            margin: -20px 0px 20px;
+            color: #cb3619;
+        }
+    }
+    &-validation-errors{
+
+    width: 100%;
+    padding: 20px;
+    color: #8b8a8a;
+    
+    }
+}
+
+ul.ul-four-cols {
+    li{
+    float: left;
+    width: 25%;
+    margin: 0px 0px 5px;
+    }
+}
+
+
+
+footer{
+    a{
+        &:hover{
+            text-decoration: none;
+        }
+    }
+}
+
+
+/*** Editando Bootstrap ***/
+
+.breadcrumb {
+    background: transparent;
+    padding: 15px 0px;
+}
+
+.navbar-nav {
+     li {
+         a{
+             display: block;
+            padding: 0.5em 1em;
+         }
+     }
+}
+
+
+a{
+    &:active, &:focus{
+        text-decoration:none;
+    }
+
+}
+.form-control, div.wpcf7 input{
+    &::-webkit-input-placeholder { color: $color-input; }
+    &:-moz-placeholder { color: $color-input;}
+    &::-moz-placeholder{ color: $color-input;}
+    &:-ms-input-placeholder{ color: $color-input;}
+}
+
+
+
+
+
+
+
+.cssload-jumping {
+    position: relative;
+    display: block;
+    margin: 70px auto;
+    width: 77px;
+}
+
+.cssload-jumping,
+.cssload-jumping * {
+    box-sizing: border-box;
+}
+
+.cssload-jumping span {
+    display: inline-block;
+    height: 10px;
+    width: 10px;
+    background: rgba(94, 94, 94, 0.98);
+    border-radius: 350px;
+    background-clip: padding-box;
+    -o-background-clip: padding-box;
+    -ms-background-clip: padding-box;
+    -webkit-background-clip: padding-box;
+    -moz-background-clip: padding-box;
+}
+
+.cssload-jumping span:nth-child(1) {
+    animation: scale 1.15s 0.12s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    -o-animation: scale 1.15s 0.12s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    -ms-animation: scale 1.15s 0.12s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    -webkit-animation: scale 1.15s 0.12s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    -moz-animation: scale 1.15s 0.12s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+}
+
+.cssload-jumping span:nth-child(2) {
+    animation: scale 1.15s 0.23s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    -o-animation: scale 1.15s 0.23s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    -ms-animation: scale 1.15s 0.23s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    -webkit-animation: scale 1.15s 0.23s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    -moz-animation: scale 1.15s 0.23s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+}
+
+.cssload-jumping span:nth-child(3) {
+    animation: scale 1.15s 0.35s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    -o-animation: scale 1.15s 0.35s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    -ms-animation: scale 1.15s 0.35s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    -webkit-animation: scale 1.15s 0.35s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    -moz-animation: scale 1.15s 0.35s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+}
+
+.cssload-jumping span:nth-child(4) {
+    animation: scale 1.15s 0.46s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    -o-animation: scale 1.15s 0.46s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    -ms-animation: scale 1.15s 0.46s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    -webkit-animation: scale 1.15s 0.46s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    -moz-animation: scale 1.15s 0.46s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+}
+
+.cssload-jumping span:nth-child(5) {
+    animation: scale 1.15s 0.58s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    -o-animation: scale 1.15s 0.58s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    -ms-animation: scale 1.15s 0.58s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    -webkit-animation: scale 1.15s 0.58s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    -moz-animation: scale 1.15s 0.58s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+}
+
+@keyframes scale {
+    0% {
+        transform: scale(0);
+    }
+    25% {
+        transform: scale(0.9, 0.9);
+        background: rgb(168, 168, 168);
+    }
+    50% {
+        transform: scale(1, 1);
+        margin: 0 2px;
+        background: rgb(107, 107, 107);
+    }
+    100% {
+        transform: scale(0);
+    }
+}
+
+@-o-keyframes scale {
+    0% {
+        -o-transform: scale(0);
+    }
+    25% {
+        -o-transform: scale(0.9, 0.9);
+        background: rgb(168, 168, 168);
+    }
+    50% {
+        -o-transform: scale(1, 1);
+        margin: 0 2px;
+        background: rgb(107, 107, 107);
+    }
+    100% {
+        -o-transform: scale(0);
+    }
+}
+
+@-ms-keyframes scale {
+    0% {
+        -ms-transform: scale(0);
+    }
+    25% {
+        -ms-transform: scale(0.9, 0.9);
+        background: rgb(168, 168, 168);
+    }
+    50% {
+        -ms-transform: scale(1, 1);
+        margin: 0 2px;
+        background: rgb(107, 107, 107);
+    }
+    100% {
+        -ms-transform: scale(0);
+    }
+}
+
+@-webkit-keyframes scale {
+    0% {
+        -webkit-transform: scale(0);
+    }
+    25% {
+        -webkit-transform: scale(0.9, 0.9);
+        background: rgb(168, 168, 168);
+    }
+    50% {
+        -webkit-transform: scale(1, 1);
+        margin: 0 2px;
+        background: rgb(107, 107, 107);
+    }
+    100% {
+        -webkit-transform: scale(0);
+    }
+}
+
+@-moz-keyframes scale {
+    0% {
+        -moz-transform: scale(0);
+    }
+    25% {
+        -moz-transform: scale(0.9, 0.9);
+        background: rgb(168, 168, 168);
+    }
+    50% {
+        -moz-transform: scale(1, 1);
+        margin: 0 2px;
+        background: rgb(107, 107, 107);
+    }
+    100% {
+        -moz-transform: scale(0);
+    }
+}
+
+
+
+
+@media screen and(max-width:1200px){
+    #app-section:before {
+    left: -7%;
+}
+}
+
+@media screen and(max-width:990px){
+nav#header-menu {
+    background: rgba(0, 0, 0, 0.35);
+}
+#app-section:before {
+    display:none;
+}
+
+.t-style2 {
+    font-size: 3rem!important;
+}
+
+
+
+.menu_open{
+
+    nav#header-menu {
+        background: #da8d18;
+    }
+
+} 
+
+
+}
+
+@media screen and(max-width:767px){
+    .logo-artmx{
+            float: initial!important;
+    text-align: center;
+    margin: 0 auto;
+    }
+
+    .imagem-e-texto{
+        a,p{
+        text-align: center!important;
+        margin: 0 auto!important;
+        display: block;
+        }
+    }
+
+    .logo-hc{
+            max-width: calc(90% - 60px);
+    }
+    
+    ul.ul-four-cols li{
+        width: 100%;
+    }
+}
+
+@media screen and(max-width:575px){
+    nav#header-menu {
+        button.navbar-toggler {
+            position: relative;
+            float: right;
+            text-align: center;
+            display: block;
+            right: initial;
+        }
+    }
+
+
+
+    #alunos-professores {
+        img{
+            right: 122px;
+            width: auto;
+            height: 400px;
+        }
+        .col-a-p-a{
+            .top{
+                height:100px;
+            }
+        }
+        .col-a-p-p{
+            img{
+                left: 120px;
+                right: initial;
+            }
+            .bot{
+                height:100px;
+            }
+        }
+
+        .top, .bot{
+            &:before{
+                display:none;
+            }
+        }
+        
+
+    }
+
+}
