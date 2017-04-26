@@ -83,17 +83,11 @@ function aprovar_vendedor_cb(){
 
         }
         
-        if($user->roles[0] == 'wc_product_vendors_pending_vendor'){
+        if(in_array('wc_product_vendors_pending_vendor', $user->roles)){
             wp_update_user( array(
                 'ID' => $user->ID,
-                'roles' => array(
-                    ''
-                )
-
+                'role' => 'wc_product_vendors_admin_vendor',
             ) );
-
-
-
         }
 
     }

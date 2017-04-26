@@ -38,6 +38,12 @@ function scripts_admin_helpclass_cb(){
 		'loading' => '<div class="cssload-jumping"><span></span><span></span><span></span><span></span><span></span></div>',
 		'security' => $security_nonce,
 	);
+	if(isset($_GET['ficha'])){
+		 wp_enqueue_script( 'tether','https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js', '', '1.4.0', true );
+		wp_enqueue_style( 'helpclass-admin', $td . '/css/admin-ficha-professor.css');
+		wp_enqueue_script( 'bootstrap','https://pingendo.com/assets/bootstrap/bootstrap-4.0.0-alpha.6.min.js', '', '4.0.0', true );
+	}
+	wp_enqueue_style( 'helpclass-admin', $td . '/css/admin.css');
 	wp_localize_script( 'helpclass_admin', 'ob_global_js', $var_global_js );
 }
 
