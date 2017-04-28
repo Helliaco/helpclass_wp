@@ -14,6 +14,22 @@ class FormsXD {
     private function get_meta_value($meta, $name){
         $meta_value = get_user_meta( $this->id, 'hc_meta_sec_'. $meta  , true );
         $meta_value = isset($meta_value[$name]) ? $meta_value[$name] : '';
+        if($meta_value == ''){
+
+            if($name == 'nomecompleto'){
+                $user = get_user_by('ID', $this->id );
+                if(isset($user->first_name)){
+                    $meta_value = $user->first_name .' '. $user->last_name;
+                }
+            }else if($name == 'telefone'){
+                $meta_value = get_user_meta($this->id,'billing_phone', true);
+            }else if($name == 'cidade'){
+                $meta_value = get_user_meta($this->id,'billing_city', true);
+            }else if($name == 'UF'){
+                 $meta_value = get_user_meta($this->id,'billing_state', true);
+            }
+
+        }
         return $meta_value;
     }
 
@@ -25,15 +41,26 @@ class FormsXD {
     public function construct_select($name, $class = '', $placeholder = '', $meta){
         $meta_value = $this->get_meta_value($meta, $name);
         $output = '<select class="form-control '.$class.'" name="'.$name.'">';
-        if($name == 'sexo'){
-            $output .= '<option value="masculino">Masculino</option><option value="feminino">Feminino</option>';
+        switch ($name){
+            case 'sexo' :
+                $masc = $meta_value == 'masculino' ? 'selected' : '';
+                $fem = $meta_value == 'feminino' ? 'selected' : '';
+                $output .= '<option value="masculino" '.$masc.'>Masculino</option><option value="feminino" '.$fem.'>Feminino</option>';
+            break;
+            case 'combinar_deslocamento' :
+                $output .= '<option value="masculino" '.$masc.'>Masculino</option><option value="feminino" '.$fem.'>Feminino</option>';
+            break;
+            default:
+
         }
+
         $output .= '</select>';
         return $output;
     }
 
     public function construct_checkbox($name, $c = '', $p = '', $meta){
         $meta_value = $this->get_meta_value($meta, $name);
+        $meta_value = is_array($meta_value) ? $meta_value : array();
         $output = '';
         $checkboxs = array();
         if($name == 'niveis_ensino'){
@@ -67,14 +94,17 @@ class FormsXD {
 
 
         foreach($checkboxs as $checkbox ){
-            $output .= $this->construct_inputs_checkbox($checkbox[0], $checkbox[1], $checkbox[2], $checkbox[3]);
+
+            $checked = in_array($checkbox[2],  $meta_value);
+            $output .= $this->construct_inputs_checkbox($checkbox[0], $checkbox[1], $checkbox[2], $checkbox[3], $checked);
         }
 
         return $output;
     }
 
-    private function construct_inputs_checkbox($name, $titulo, $value, $col = 12){
-        return $output = '<label class="custom-control custom-checkbox mb-'.$col.'"><input type="checkbox" class="custom-control-input" name="'.$name.'[]" value="'. $value .'"><span class="custom-control-indicator"></span><span class="custom-control-description">'.$titulo.'</span></label>';
+    private function construct_inputs_checkbox($name, $titulo, $value, $col = 12, $checked = false){
+        $checked = $checked ? 'checked' : '';
+        return $output = '<label class="custom-control custom-checkbox mb-'.$col.'"><input type="checkbox" class="custom-control-input" name="'.$name.'[]" value="'. $value .'" '.$checked.'><span class="custom-control-indicator"></span><span class="custom-control-description">'.$titulo.'</span></label>';
     }
 
 
@@ -83,7 +113,6 @@ class FormsXD {
         $meta_value =  $this->get_meta_value($meta, $name);
        return $output = '<textarea class="form-control '. $class . '" name="'.$name.'" rows="3">'.$meta_value.'</textarea>';
     }
-
 
 
     public function construct_form_group($name, $type= false, $label = false, $class = '', $placeholder = '', $col = 6, $section_meta){
@@ -100,6 +129,26 @@ class FormsXD {
         return $output;
     }
 
+    public function construct_repeater($name, $c = '', $p = '', $meta){
+        $meta_value =  $this->get_meta_value($meta, $name);
+        $output = '';
+        if($c = 'experiencias'){
+            /** if(is_array($meta_value)){
+                foreach($meta_value as $meta){
+
+                }
+            }else{  **/
+                $name1 = $name .'[0][empresa]'; 
+                $name2 = $name .'[0][tempo]'; 
+                $name3 = $name .'[0][atividades]'; 
+                $input_x = '<div class="row"><div class="col-md-5">'.$this->construct_input($name1, $c, 'Empresa', $meta_value).'</div>';
+                $input_y = '<div class="col-md-2">'.$this->construct_input($name2, $c, 'Tempo de Experiência', $meta_value).'</div>';
+                $input_z = '<div class="col-md-4">'.$this->construct_input($name3, $c, 'Atividades Exercidas', $meta_value).'</div>';
+            /*  }  **/
+            $output = $input_x . $input_y . $input_z . '<div class="col-md-1"><button class="add_repeat btn btn-primary">+</button></div></div>';
+        }
+        return $output;
+    }
     
 
     public function inputs_ficha_professor(){ 
@@ -152,27 +201,25 @@ class FormsXD {
                 array(
                     'telefone', 'input', 'Telefone (DDD):', ' ', ' ','3',
                 ),
-                 array(
+                array(
                     'endereco', 'input', 'Endereço Completo:', ' ', ' ','6',
                 ),
-                 array(
+                array(
                     'numero', 'input', 'Número:', ' ', ' ','3',
                 ),
-                 array(
+                array(
                     'complemento', 'input', 'Complemento:', ' ', ' ','3',
                 ),
-
-                 array(
+                array(
                     'bairro', 'input', 'Bairro:', ' ', ' ','3',
                 ),
-
-                 array(
+                array(
                     'cidade', 'input', 'Cidade:', ' ', ' ','3',
                 ),
-                 array(
+                array(
                     'UF', 'input', 'UF:', ' ', ' ','3',
                 ),
-                 array(
+                array(
                     'CEP', 'input', 'CEP:', ' ', ' ','3',
                 ),
 
@@ -189,12 +236,10 @@ class FormsXD {
                     'operacao', 'input', 'Operação:', ' ', ' ','3',
                 ),
 
-                array(
-                    'email', 'input', 'E-mail:', ' ', ' ','6',
-                ),
+                // array( 'email_ficha', 'input', 'E-mail:', ' ', ' ','6',),
 
-                 array(
-                    'mei', 'input', 'Cadastro Micro Empreendedor Individual (MEI):', ' ', ' ','6',
+                array(
+                    'mei', 'input', 'Cadastro Micro Empreendedor Individual (MEI):', ' ', ' ','12',
                 ),
 
 
@@ -272,8 +317,27 @@ class FormsXD {
 
             ),
 
+            array(
+                array(
+                    'experiencias', 'textarea', 'Experiências Profissionais', 'experiencias', ' ', '12',
+                ),
+                array(
+                    'cursos_extracurriculares', 'textarea', 'Cursos Extracurriculares:', ' ', ' ','12',
+                ),
+                array(
+                    'certificacoes', 'textarea', 'Certificações:', ' ', ' ','12',
+                ),
+                array(
+                    'observacoes_complementares', 'textarea', 'Obeservações Complementares:', ' ', ' ','12',
+                ),
+                array(
+                    'tipo_deslocamento', 'textarea', 'Tipo de Deslocamento:', ' ', ' ','12',
+                ),
+                array(
+                    'combinar_deslocamento', 'input', 'Caso aceite dar aulas em Condomínios ou RMBH, deseja combinar deslocamento a parte por veículo próprio ou Uber?:', ' ', ' ','12',
+                ),
+            ),
         );
-        
     }
 
 }

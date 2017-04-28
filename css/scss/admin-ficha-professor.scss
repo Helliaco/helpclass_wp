@@ -20,7 +20,21 @@ form#your-profile {
     }
     #ficha_professor, .submit{
         display:block!important;
+
+        & > div{
+            border: 1px solid rgba(0, 0, 0, 0.17);
+            padding: 10px 0px;
+            margin-bottom: 20px;
+            margin-top: 20px;
+            background: #f1f1f1;
+            border-radius:5px;
+        }
+        h2{
+                margin-bottom: 20px;
+                cursor:pointer;
+        }
     }
 }
+
 
 

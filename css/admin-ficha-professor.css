@@ -8158,3 +8158,17 @@ form#your-profile > * {
 form#your-profile #ficha_professor, form#your-profile .submit {
   display: block !important;
 }
+
+form#your-profile #ficha_professor > div, form#your-profile .submit > div {
+  border: 1px solid rgba(0, 0, 0, 0.17);
+  padding: 10px 0px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  background: #f1f1f1;
+  border-radius: 5px;
+}
+
+form#your-profile #ficha_professor h2, form#your-profile .submit h2 {
+  margin-bottom: 20px;
+  cursor: pointer;
+}

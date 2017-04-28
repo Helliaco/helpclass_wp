@@ -130,7 +130,7 @@ $td = get_template_directory_uri();
 
                             <div id="collapseOne5" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
                             <div class="card-block">
-                                Helpclass é um aplicativo web e mobile que oferece um jeito simples e fácil de localziar alunos e agendar aulas particulares.
+                                Helpclass é um aplicativo web e mobile que oferece um jeito simples e fácil de localizar alunos e agendar aulas particulares.
                             </div>
                             </div>
                         </div>
